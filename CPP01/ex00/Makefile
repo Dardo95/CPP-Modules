@@ -1,27 +1,28 @@
-# Detectar si estamos en Windows (mingw32-make en cmd)
-ifeq ($(OS),Windows_NT)
-	RM  = del /Q
-	EXE = .exe
-else
-	RM  = rm -f
-	EXE =
-endif
-
-NAME    = BraiiiiiiinnnzzzZ$(EXE)
+NAME    = BraiiiiiiinnnzzzZ
 
 CXX     = c++
 CXXFLAGS= -Wall -Wextra -Werror -std=c++98
 
 SRCS    = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
-OBJS    = $(SRCS:.cpp=.o)
+
+OBJDIR  = build
+OBJS    = $(addprefix $(OBJDIR)/,$(SRCS:.cpp=.o))
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
+# Regla genérica para compilar .cpp a .o dentro de build/
+$(OBJDIR)/%.o: %.cpp | $(OBJDIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# Crear carpeta build si no existe
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
+
 clean:
-	-$(RM) $(OBJS)
+	-$(RM) -r $(OBJDIR)
 
 fclean: clean
 	-$(RM) $(NAME)
