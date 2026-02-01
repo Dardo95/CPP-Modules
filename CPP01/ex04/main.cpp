@@ -1,7 +1,7 @@
 // main.cpp
 #include <iostream>
 #include <string>
-#include "Replacer.hpp"
+#include "replacer.hpp"
 
 int main(int argc, char **argv)
 {
