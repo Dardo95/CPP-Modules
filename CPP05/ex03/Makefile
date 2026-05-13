@@ -1,4 +1,4 @@
-NAME    = ex02
+NAME    = ex03
 
 CXX     = c++
 CXXFLAGS= -Wall -Wextra -Werror -std=c++98 -Iinclude
@@ -6,7 +6,7 @@ CXXFLAGS= -Wall -Wextra -Werror -std=c++98 -Iinclude
 SRCS    = main.cpp \
           src/Bureaucrat.cpp src/AForm.cpp \
           src/ShrubberyCreationForm.cpp src/RobotomyRequestForm.cpp \
-          src/PresidentialPardonForm.cpp
+          src/PresidentialPardonForm.cpp src/Intern.cpp
 
 OBJDIR  = build
 OBJS    = $(addprefix $(OBJDIR)/,$(SRCS:.cpp=.o))
@@ -28,7 +28,6 @@ clean:
 
 fclean: clean
 	-$(RM) $(NAME)
-	-$(RM) *_shrubbery
 
 re: fclean all
 
